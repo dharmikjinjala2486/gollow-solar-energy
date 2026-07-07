@@ -30,10 +30,24 @@ app.use(express.json());
 // API Rate Limiter
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 mins
-  max: 200, 
+  max: 200,
   message: { error: 'Too many requests from this IP. Please try again in 15 minutes.' },
 });
 app.use('/api/', limiter);
+
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "GOL LOW Solar API is running 🚀"
+  });
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    status: "Healthy"
+  });
+});
 
 // API Route Bindings
 app.use('/api/auth', authRoutes);
