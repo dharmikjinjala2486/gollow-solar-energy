@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-navy text-white font-body overflow-x-hidden antialiased;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(249, 178, 51, 0.07) 0%, transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.07) 0%, transparent 45%),
+      linear-gradient(to bottom, #061B2D, #030d16);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-brand-glass backdrop-blur-xl border border-white/10 rounded-2xl transition-all duration-500 hover:border-brand-yellow/30 shadow-glass;
+  }
+  
+  .glass-card-light {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:border-brand-yellow/20;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-brand-yellow text-brand-navy font-heading font-semibold px-8 py-3.5 rounded-full transition-all duration-300 hover:shadow-glow-yellow hover:scale-[1.02] flex items-center justify-center gap-2 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply relative overflow-hidden bg-white/10 backdrop-blur-md text-white font-heading font-semibold px-8 py-3.5 rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 flex items-center justify-center gap-2 active:scale-95;
+  }
+
+  .btn-green {
+    @apply relative overflow-hidden bg-brand-green text-white font-heading font-semibold px-8 py-3.5 rounded-full transition-all duration-300 hover:shadow-glow-green hover:scale-[1.02] flex items-center justify-center gap-2 active:scale-95;
+  }
+
+  .text-glow-yellow {
+    text-shadow: 0 0 12px rgba(249, 178, 51, 0.4);
+  }
+  
+  .text-glow-green {
+    text-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #061B2D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  border: 2px solid #061B2D;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 178, 51, 0.5);
+}
+
+/* Background Grid Pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Energy Ray animations */
+.energy-ray {
+  background: linear-gradient(90deg, transparent, rgba(249, 178, 51, 0.8), transparent);
+  animation: energy-ray-run 3s ease-in-out infinite;
+}
+
+@keyframes energy-ray-run {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Lenis Scroll Overrides */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
