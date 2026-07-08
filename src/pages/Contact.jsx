@@ -45,7 +45,7 @@ export default function Contact() {
         type: 'General'
       };
 
-      fetch('/api/inquiries', {
+      fetch(`${import.meta.env.VITE_API_URL}/api/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -159,137 +159,137 @@ export default function Contact() {
               Request Solar Sizing & RFQ proposal
             </h3>
 
-                  {formSubmitted ? (
-                    <motion.div
-                      initial={{ scale: 0.95 }}
-                      animate={{ scale: 1 }}
-                      className="bg-brand-green/10 border border-brand-green/30 p-8 rounded-2xl flex flex-col items-center gap-4 text-center py-16"
+            {formSubmitted ? (
+              <motion.div
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                className="bg-brand-green/10 border border-brand-green/30 p-8 rounded-2xl flex flex-col items-center gap-4 text-center py-16"
+              >
+                <CheckCircle2 className="w-16 h-16 text-brand-green" />
+                <h4 className="font-heading font-bold text-lg text-white">Proposal Request Received</h4>
+                <p className="text-xs text-white/60 max-w-md leading-relaxed">
+                  Thank you for contacting GOL LOW. Our solar design engineers will perform a preliminary rooftop survey via drone imagery and email options within 1 business day.
+                </p>
+                <button
+                  onClick={() => setFormSubmitted(false)}
+                  className="btn-secondary text-xs mt-4"
+                >
+                  Submit another request
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">Full Name</label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="John Doe"
+                      required
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">Company Name (Optional)</label>
+                    <input
+                      type="text"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Enterprise LLC"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">Work Email</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="john@enterprise.ae"
+                      required
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">Phone Number</label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+971 50 123 4567"
+                      required
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">UAE Emirate Location</label>
+                    <select
+                      value={emirate}
+                      onChange={(e) => setEmirate(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
                     >
-                      <CheckCircle2 className="w-16 h-16 text-brand-green" />
-                      <h4 className="font-heading font-bold text-lg text-white">Proposal Request Received</h4>
-                      <p className="text-xs text-white/60 max-w-md leading-relaxed">
-                        Thank you for contacting GOL LOW. Our solar design engineers will perform a preliminary rooftop survey via drone imagery and email options within 1 business day.
-                      </p>
-                      <button
-                        onClick={() => setFormSubmitted(false)}
-                        className="btn-secondary text-xs mt-4"
-                      >
-                        Submit another request
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <form onSubmit={handleFormSubmit} className="flex flex-col gap-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">Full Name</label>
-                          <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="John Doe"
-                            required
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">Company Name (Optional)</label>
-                          <input
-                            type="text"
-                            value={company}
-                            onChange={(e) => setCompany(e.target.value)}
-                            placeholder="Enterprise LLC"
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          />
-                        </div>
-                      </div>
+                      {['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'].map(e => (
+                        <option key={e} value={e} className="bg-brand-navy text-white">{e}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">Est. Monthly Bill</label>
+                    <select
+                      value={billRange}
+                      onChange={(e) => setBillRange(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                    >
+                      {['Under 1,000 AED', '1,000 - 5,000 AED', '5,000 - 15,000 AED', 'Over 15,000 AED'].map(range => (
+                        <option key={range} value={range} className="bg-brand-navy text-white">{range}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">Work Email</label>
-                          <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="john@enterprise.ae"
-                            required
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">Phone Number</label>
-                          <input
-                            type="tel"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            placeholder="+971 50 123 4567"
-                            required
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          />
-                        </div>
-                      </div>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between items-center">
+                    <label className="text-[10px] font-bold text-white/40 uppercase">System Sizing Needed (kWp)</label>
+                    <span className="text-[9px] text-brand-yellow">Optional: Auto-filled from AI Estimator</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="form-system-size"
+                    value={sizeInput}
+                    onChange={(e) => setSizeInput(e.target.value)}
+                    placeholder="e.g. 50 kWp array + 100 kWh battery"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
+                  />
+                </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">UAE Emirate Location</label>
-                          <select
-                            value={emirate}
-                            onChange={(e) => setEmirate(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          >
-                            {['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'].map(e => (
-                              <option key={e} value={e} className="bg-brand-navy text-white">{e}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">Est. Monthly Bill</label>
-                          <select
-                            value={billRange}
-                            onChange={(e) => setBillRange(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                          >
-                            {['Under 1,000 AED', '1,000 - 5,000 AED', '5,000 - 15,000 AED', 'Over 15,000 AED'].map(range => (
-                              <option key={range} value={range} className="bg-brand-navy text-white">{range}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-bold text-white/40 uppercase">Design requirements / Message</label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows="4"
+                    placeholder="Provide details about roof material, structural load capability, or shift schedule patterns..."
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50 resize-none"
+                  />
+                </div>
 
-                      <div className="flex flex-col gap-1.5">
-                        <div className="flex justify-between items-center">
-                          <label className="text-[10px] font-bold text-white/40 uppercase">System Sizing Needed (kWp)</label>
-                          <span className="text-[9px] text-brand-yellow">Optional: Auto-filled from AI Estimator</span>
-                        </div>
-                        <input
-                          type="text"
-                          id="form-system-size"
-                          value={sizeInput}
-                          onChange={(e) => setSizeInput(e.target.value)}
-                          placeholder="e.g. 50 kWp array + 100 kWh battery"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50"
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-bold text-white/40 uppercase">Design requirements / Message</label>
-                        <textarea
-                          value={message}
-                          onChange={(e) => setMessage(e.target.value)}
-                          rows="4"
-                          placeholder="Provide details about roof material, structural load capability, or shift schedule patterns..."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50 resize-none"
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="btn-primary w-full"
-                      >
-                        <span>Send Engineering Inquiry</span>
-                        <Send className="w-4 h-4" />
-                      </button>
-                    </form>
-                  )}
+                <button
+                  type="submit"
+                  className="btn-primary w-full"
+                >
+                  <span>Send Engineering Inquiry</span>
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
