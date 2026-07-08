@@ -16,7 +16,6 @@ import RentalPlans from './pages/RentalPlans';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Contact from './pages/Contact';
-import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   // Initialize Lenis Smooth Scroll
@@ -61,7 +60,6 @@ export default function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
 
