@@ -55,16 +55,23 @@ export async function createInquiry(req, res) {
       `,
     }).catch(console.error);
 
+    return res.status(201).json({
+      success: true,
+      message: 'Inquiry submitted successfully.',
+      data: inquiry,
+    });
+
   } catch (error) {
     console.error("========== FULL ERROR ==========");
     console.error(error);
     console.error("Message:", error.message);
     console.error("Stack:", error.stack);
 
+    const isProd = process.env.NODE_ENV === 'production';
     return res.status(500).json({
       success: false,
-      error: error.message,
-      stack: error.stack,
+      error: isProd ? 'An unexpected error occurred while processing your request.' : error.message,
+      ...(isProd ? {} : { stack: error.stack })
     });
   }
 }

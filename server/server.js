@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
 import prisma from './prisma/db.js';
 
 import authRoutes from './routes/authRoutes.js';
@@ -12,8 +11,6 @@ import newsletterRoutes from './routes/newsletterRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 import formulaRoutes from './routes/formulaRoutes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
