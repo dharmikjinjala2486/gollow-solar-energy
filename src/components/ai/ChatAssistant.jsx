@@ -106,7 +106,7 @@ export default function ChatAssistant() {
   return (
     <>
       {/* Floating Trigger Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      <div id="chat-assistant-container" className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         <AnimatePresence>
           {showNotifications && !isOpen && (
             <motion.div
@@ -144,7 +144,7 @@ export default function ChatAssistant() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-24 right-6 w-[360px] md:w-[400px] h-[550px] max-h-[80vh] bg-brand-navy/95 border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 backdrop-blur-md"
+            className="fixed bottom-24 left-4 right-4 sm:left-auto sm:right-6 sm:w-[400px] h-[500px] sm:h-[550px] max-h-[70vh] sm:max-h-[80vh] bg-brand-navy/95 border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 backdrop-blur-md"
           >
             {/* Header */}
             <div className="bg-[#04111f] p-4 border-b border-white/10 flex items-center justify-between">

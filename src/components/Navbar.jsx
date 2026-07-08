@@ -37,6 +37,27 @@ export default function Navbar() {
     setAiMenuOpen(false);
   }, [location.pathname]);
 
+  // Lock body scroll and toggle PWA elements when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-active');
+      window.lenis?.stop();
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('mobile-menu-active');
+      window.lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('mobile-menu-active');
+      window.lenis?.start();
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${

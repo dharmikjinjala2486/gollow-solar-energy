@@ -169,15 +169,8 @@ export default function EarthCanvas() {
           <Canvas
             camera={{ position: [0, 0, 3.2], fov: 50 }}
             gl={{ antialias: true, alpha: true }}
-            style={{
-              position: 'absolute',
-              top: '-15%',
-              left: '-15%',
-              width: '130%',
-              height: '130%',
-              pointerEvents: 'auto',
-            }}
-            className="cursor-grab active:cursor-grabbing"
+            dpr={[1, 1.5]}
+            className="absolute top-0 left-0 w-full h-full md:-top-[15%] md:-left-[15%] md:w-[130%] md:h-[130%] pointer-events-auto cursor-grab active:cursor-grabbing"
             shadows
           >
             <ambientLight intensity={0.5} />

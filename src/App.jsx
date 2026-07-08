@@ -31,6 +31,8 @@ export default function App() {
       touchMultiplier: 1.2,
     });
 
+    window.lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -40,6 +42,7 @@ export default function App() {
 
     return () => {
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 
