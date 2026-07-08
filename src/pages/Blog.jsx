@@ -34,8 +34,8 @@ export default function Blog() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
       <SEO
-        title="Solar Education, Guidebooks & Insights | GOL LOW Blog"
-        description="Read the latest articles on solar regulations, DEWA Shams regulations, solar savings calculator advice, industrial battery storage, and solar energy updates in the UAE and India."
+        title="Solar Energy Blog | GOL LOW"
+        description="Stay updated with the latest in solar technologies, Shams Dubai net metering policy updates, diesel-hybrid optimization tips, and clean energy storage guides."
         keywords="Solar Energy Dubai, Solar ROI, Clean Energy, Renewable Energy UAE, Solar Rental India, Solar Energy Company in India, Best Solar Company Dubai, Solar Panel Rental Company Dubai"
       />
       {/* Header Banner */}

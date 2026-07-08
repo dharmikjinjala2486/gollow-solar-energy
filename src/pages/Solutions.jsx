@@ -64,8 +64,8 @@ export default function Solutions() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
       <SEO
-        title="Solar Energy Solutions | Commercial, Industrial & Hybrid Grid Rentals"
-        description="Explore custom solar solutions by GOL LOW. From industrial solar container grids to commercial rooftop leasing and smart solar-diesel hybrid rentals for construction sites in UAE & India."
+        title="Solar Rental Solutions | GOL LOW UAE"
+        description="Explore custom commercial rooftop leasing, industrial solar container grids, and hybrid solar-diesel grid rentals in the UAE by GOL LOW."
         keywords="Solar Rental Dubai, Solar Solutions, Commercial Solar UAE, Industrial Solar UAE, Warehouse Solar Dubai, Villa Solar, Factory Solar, Battery Storage Rental, Solar Power India, Commercial Solar India"
         schemaList={solutionsSchemas}
       />

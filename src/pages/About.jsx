@@ -29,8 +29,8 @@ export default function About() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
       <SEO
-        title="About GOL LOW | Pioneering Solar Panel Leasing in UAE & India"
-        description="Learn about GOL LOW Solar Energy Systems Rental. We are the leading solar company in Dubai, supplying commercial, industrial, and residential solar solutions with zero upfront CAPEX across the UAE and India."
+        title="About GOL LOW | Solar Energy Experts UAE"
+        description="Learn about GOL LOW Solar Energy Systems Rental. We are a leading provider of commercial, industrial, and residential solar leasing solutions with 0 capital investment required across the UAE."
         keywords="About Gol Low, Solar Company Dubai, Solar Energy Company UAE, India Solar Company, Solar Rental Company, Renewable Energy Dubai, Clean Energy UAE, Solar Solutions, Solar Investment, Commercial Solar Dubai, Industrial Solar India"
       />
       {/* Header Banner */}

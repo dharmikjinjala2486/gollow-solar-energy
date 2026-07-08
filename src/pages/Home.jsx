@@ -119,8 +119,8 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative w-full">
       <SEO
-        title="GOL LOW | Premium Solar Energy Systems Rental UAE & India"
-        description="GOL LOW Solar Energy Systems Rental offers zero-upfront commercial solar panels, industrial solar leasing, and construction site hybrid power grid rentals across Dubai, Abu Dhabi, UAE, and India."
+        title="🟡 GOL LOW | Premium Solar Energy Rental Company UAE"
+        description="GOL LOW Solar Energy Systems Rental UAE offers zero-upfront commercial solar panels, industrial solar leasing, and construction site hybrid power grid rentals across Dubai, Abu Dhabi, and the wider UAE."
         keywords="Gol Low Solar Energy, Gol Low, Gol Low Solar, Solar Energy Dubai, Solar Rental Dubai, Solar Panel Rental Dubai, Solar Leasing Dubai, Solar System Rental UAE, Commercial Solar UAE, Industrial Solar UAE, Solar Company Dubai, Solar Power Dubai, Solar Energy Company UAE, Solar Installation Dubai, Solar Rental Company, Solar Panels, Solar Energy, Solar Solutions, Renewable Energy, Clean Energy, Green Energy, Solar ROI, Solar Savings, Warehouse Solar, Villa Solar, Factory Solar, Business Solar, Solar Investment, Solar Power UAE, India Solar Company, Solar Rental India, Solar Energy India, Commercial Solar India, Industrial Solar India"
         schemaList={homeSchemas}
       />

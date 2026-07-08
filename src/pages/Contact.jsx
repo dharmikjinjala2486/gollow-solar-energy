@@ -9,8 +9,8 @@ export default function Contact() {
   return (
     <div className="pt-24 pb-20 overflow-hidden">
       <SEO
-        title="Contact GOL LOW | Speak with Solar Energy Specialists Dubai"
-        description="Contact GOL LOW Solar Energy Systems Rental. Reach our Dubai headquarters or access our 24/7 technical support hotline for solar installations in the United Arab Emirates and India."
+        title="Contact GOL LOW | Solar Rental UAE"
+        description="Get in touch with GOL LOW Solar Energy Systems Rental. Reach our Dubai headquarters or use our support hotline for clean energy canopy inquiries across UAE."
         keywords="Best Solar Rental Company Dubai, Affordable Solar Rental Dubai, Solar Energy Company in Dubai, Call Solar Company Dubai, Solar Company Dubai, Solar Panel Rental Company Dubai, Solar Energy Solutions Dubai"
       />
       {/* Header Banner */}

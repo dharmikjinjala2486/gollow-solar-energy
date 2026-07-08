@@ -41,8 +41,8 @@ export default function RentalPlans() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
       <SEO
-        title="Solar Rental Plans & Zero-CAPEX Leasing Models | GOL LOW"
-        description="Flexible rental and leasing contracts for solar panel systems. Zero upfront CAPEX options: Flat-rate rental, energy savings lease, and lease-to-own models for UAE and India businesses."
+        title="Solar Rental Plans & Pricing | GOL LOW"
+        description="Compare GOL LOW Solar Energy Systems Rental plans: Residential flat-rate, Commercial energy savings, and Industrial canopy leasing models with 0 upfront investment in UAE."
         keywords="Solar Panel Rental Dubai, Solar Leasing Dubai, Solar ROI, Solar Savings, Solar Investment, Best Solar Rental UAE, Commercial Solar Leasing UAE, Industrial Solar Rental UAE"
       />
       {/* Header Banner */}

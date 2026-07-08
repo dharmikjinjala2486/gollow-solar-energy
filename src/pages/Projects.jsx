@@ -82,8 +82,8 @@ export default function Projects() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
       <SEO
-        title="Our Solar Projects & Case Studies | GOL LOW Solar Rentals"
-        description="Browse active solar installations and leasing projects deployed by GOL LOW. Real-time solar energy production, carbon offsets, and client savings reports across Dubai, UAE, and India."
+        title="Solar Rental Projects Portfolio | GOL LOW"
+        description="Browse our commercial, industrial, and hybrid solar rental case studies across Dubai, Abu Dhabi, and the wider UAE. Review real-world savings, carbon offset metrics, and deployment statistics."
         keywords="Solar Rental Company Dubai, Solar Energy Solutions Dubai, Rooftop Solar Dubai, Warehouse Solar Dubai, UAE Solar Projects, Commercial Solar UAE, Industrial Solar India, Solar Panel Rental Company Dubai"
       />
       {/* Header Banner */}
