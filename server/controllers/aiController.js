@@ -29,27 +29,27 @@ export async function calculateSavings(req, res) {
 
   try {
     const params = await getFormulaParams();
-    
+
     // Grid pricing assumptions in AED per kWh
     const gridRate = propertyType === 'Residential' ? 0.32 : propertyType === 'Commercial' ? 0.38 : 0.35;
-    
+
     // Calculate monthly kWh from bill
     const monthlyKwh = energyUsage ? Number(energyUsage) : Number(bill) / gridRate;
-    
+
     // Sizing: Target covering 75% of energy bills
     const targetKwh = monthlyKwh * 0.75;
     let targetKwp = targetKwh / params.solar_yield_multiplier;
-    
+
     // Space limit: 1 kWp requires ~6 sq. meters
     const maxKwpBySpace = Number(roofSize) / 6;
-    
+
     // Optimized final size
     const systemSize = Math.min(targetKwp, maxKwpBySpace);
-    
+
     // Generation
     const annualGeneration = systemSize * params.solar_yield_multiplier * 12;
     const annualSavings = annualGeneration * gridRate;
-    
+
     // 10-Year projection incorporating 4% utility inflation
     let tenYearSavings = 0;
     for (let i = 0; i < 10; i++) {
@@ -100,17 +100,17 @@ export async function estimateProject(req, res) {
 
   try {
     const params = await getFormulaParams();
-    
+
     // Annual yield per kWp (approx. 1.74 MWh in UAE)
     const annualMwhYield = (params.solar_yield_multiplier * 12) / 1000;
-    
+
     let targetCoverage = 0.65;
     if (shifts === 'Day Shift Only') targetCoverage = 0.85;
     if (shifts === 'Night Shift Only') targetCoverage = 0.15;
 
     // Solar needed
     let solarKwp = (Number(usage) * targetCoverage) / annualMwhYield;
-    
+
     // Battery sizing (kWh)
     let batteryKwh = 0;
     const peakDemandKw = (Number(usage) * 1000) / (365 * 12); // rough average peak demand approximation
@@ -119,13 +119,13 @@ export async function estimateProject(req, res) {
       if (shifts === '24/7 Continuous') batteryKwh = peakDemandKw * 4.5;
       else if (shifts === 'Night Shift Only') batteryKwh = peakDemandKw * 8;
       else batteryKwh = peakDemandKw * 2;
-      
+
       // Add extra solar array capacity to charge the battery
       solarKwp += (batteryKwh * 300 * 1.2) / 1000 / annualMwhYield;
     }
 
     const generationMwh = solarKwp * annualMwhYield;
-    
+
     // Timeline
     let timelineWeeks = 6;
     if (solarKwp < 100) timelineWeeks = 3;
@@ -200,7 +200,7 @@ Our company provides zero-upfront solar rentals (OPEX lease or PPA models) for:
 
 We manage site drone surveys, DEWA Shams approvals, grid syncing, equipment (Tier-1 bifacial panels, modular LiFePO4 batteries), installations, and operations/scheduled washings.
 Office Location: Al Muraqqabat, Port Saeed, Dubai, United Arab Emirates.
-Phone: +971 4 337 7881. 24/7 Technical Support line: +971 50 987 6543.
+Phone: +971 4 123 4567. 24/7 Technical Support line: +971 50 987 6543.
 Keep responses concise, premium, professional, and guide users to booking consultations.`
             },
             ...messages.map(m => ({
@@ -231,7 +231,7 @@ Keep responses concise, premium, professional, and guide users to booking consul
   } else if (normalizedQuery.includes('construction') || normalizedQuery.includes('diesel')) {
     responseText = "We rent mobile solar container units integrated with modular batteries. They replace traditional noisy desert diesel generators, lowering site diesel refilling needs by up to 60%.";
   } else if (normalizedQuery.includes('call') || normalizedQuery.includes('contact') || normalizedQuery.includes('callback')) {
-    responseText = "Sure, please use the contact form to submit your phone number and location, or contact our central Dubai hotline at +971 4 337 7881.";
+    responseText = "Sure, please use the contact form to submit your phone number and location, or contact our central Dubai hotline at +971 4 123 4567.";
   } else if (normalizedQuery.includes('plan') || normalizedQuery.includes('price') || normalizedQuery.includes('rate')) {
     responseText = "Our rental plans: Residential flat leases average 36 AED/kWp/mo; Commercial PPAs pay per kWh generated at low rates; Industrial lease-to-own starts at 20 AED/kWp/mo; and Construction containers start at 48 AED/kWp/mo.";
   }

@@ -17,7 +17,7 @@ const getTransporter = () => {
 
 export async function sendEmail({ to, subject, html, text }) {
   const transporter = getTransporter();
-  const from = process.env.SMTP_FROM || 'GOL LOW Solar Support <Hr@gollowsolarenergy.com>';
+  const from = process.env.SMTP_FROM || 'GOL LOW Solar Support <noreply@gollowsolar.ae>';
 
   if (transporter) {
     try {
@@ -64,7 +64,7 @@ export async function sendInquiryReceipt({ email, name, detailSummary }) {
         A solar systems engineer will get in touch with you within 1 business day with the preliminary blueprint.
       </p>
       <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;" />
-      <span style="font-size: 11px; color: #64748b;">GOL LOW Solar Energy Systems Rental • Al Muraqqabat, Port Saeed, Dubai, United Arab Emirates</span>
+      <span style="font-size: 11px; color: #64748b;">GOL LOW Solar Energy Systems Rental • Level 28, Solar Plaza, Dubai, UAE</span>
     </div>
   `;
   await sendEmail({ to: email, subject, html, text: `Proposal Request Received. Sizing: ${detailSummary}` });
@@ -95,7 +95,7 @@ export async function sendBookingReceipt({ email, name, date, time }) {
 
 // 3. Admin Notification
 export async function sendAdminNotification({ type, dataSummary }) {
-  const adminEmail = process.env.ADMIN_EMAIL || 'Hr@gollowsolarenergy.com';
+  const adminEmail = process.env.ADMIN_EMAIL || 'alerts@gollowsolar.ae';
   const subject = `[GOL LOW ALERT] New ${type} Registered`;
   const html = `
     <div style="font-family: 'Inter', sans-serif; color: #334155; padding: 25px; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 600px;">
