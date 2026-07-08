@@ -2,9 +2,9 @@ import prisma from '../prisma/db.js';
 import { sendInquiryReceipt, sendBookingReceipt, sendAdminNotification } from '../services/emailService.js';
 
 export async function createInquiry(req, res) {
-  const { 
-    name, company, email, phone, emirate, propertyType, projectType, 
-    roofSize, bill, contactMethod, preferredDate, preferredTime, message, type 
+  const {
+    name, company, email, phone, emirate, propertyType, projectType,
+    roofSize, bill, contactMethod, preferredDate, preferredTime, message, type
   } = req.body;
 
   if (!name || !email || !phone) {
@@ -39,9 +39,9 @@ export async function createInquiry(req, res) {
     } else {
       sendInquiryReceipt({ email, name, detailSummary: summary }).catch(console.error);
     }
-    
-    sendAdminNotification({ 
-      type: isBooking ? 'Booking' : 'Inquiry', 
+
+    sendAdminNotification({
+      type: isBooking ? 'Booking' : 'Inquiry',
       dataSummary: `
         Name: ${name}
         Email: ${email}
@@ -55,10 +55,17 @@ export async function createInquiry(req, res) {
       `,
     }).catch(console.error);
 
-    return res.status(201).json({ success: true, inquiry });
   } catch (error) {
-    console.error('Error creating inquiry:', error);
-    return res.status(500).json({ error: 'Failed to submit inquiry.' });
+    console.error("========== FULL ERROR ==========");
+    console.error(error);
+    console.error("Message:", error.message);
+    console.error("Stack:", error.stack);
+
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: error.stack,
+    });
   }
 }
 
@@ -126,7 +133,7 @@ export async function exportInquiriesCsv(req, res) {
     });
 
     let csvContent = 'ID,Name,Company,Email,Phone,Emirate,Property Type,Roof Size (m2),Bill (AED),Preferred Contact,Date,Time,Status,Type,Created At\n';
-    
+
     inquiries.forEach((item) => {
       const row = [
         item.id,
