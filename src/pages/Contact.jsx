@@ -3,10 +3,16 @@ import {
   Mail, Phone, MapPin,
   MessageSquare, Clock, ShieldAlert
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   return (
     <div className="pt-24 pb-20 overflow-hidden">
+      <SEO
+        title="Contact GOL LOW | Speak with Solar Energy Specialists Dubai"
+        description="Contact GOL LOW Solar Energy Systems Rental. Reach our Dubai headquarters or access our 24/7 technical support hotline for solar installations in the United Arab Emirates and India."
+        keywords="Best Solar Rental Company Dubai, Affordable Solar Rental Dubai, Solar Energy Company in Dubai, Call Solar Company Dubai, Solar Company Dubai, Solar Panel Rental Company Dubai, Solar Energy Solutions Dubai"
+      />
       {/* Header Banner */}
       <section className="relative py-24 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -55,7 +61,7 @@ export default function Contact() {
               
               <div className="flex flex-col gap-6 relative z-10">
                 <div>
-                  <h3 className="font-heading font-extrabold text-2xl text-white">Dubai Headquarters</h3>
+                  <h2 className="font-heading font-extrabold text-2xl text-white">Dubai Headquarters</h2>
                   <p className="text-xs text-white/50 mt-1">Main Engineering Hub & Operations Center</p>
                 </div>
 
@@ -140,9 +146,9 @@ export default function Contact() {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                   </span>
                 </div>
-                <h4 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white">
+                <h2 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white">
                   Emergency 24/7 Hotline
-                </h4>
+                </h2>
               </div>
 
               <p className="text-xs text-white/60 leading-relaxed relative z-10">
@@ -162,7 +168,7 @@ export default function Contact() {
             <div className="glass-card p-8 text-left border border-white/10 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h4 className="font-heading font-bold text-base text-white">UAE Fleet Operations</h4>
+                  <h2 className="font-heading font-bold text-base text-white">UAE Fleet Operations</h2>
                   <span className="text-[10px] font-bold text-brand-green bg-brand-green/10 px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-brand-green/20">
                     <span className="relative flex h-1.5 w-1.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>

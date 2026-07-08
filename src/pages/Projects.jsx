@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Calendar, Activity, Zap, TrendingUp, ShieldCheck } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const projects = [
   {
@@ -80,6 +81,11 @@ export default function Projects() {
 
   return (
     <div className="pt-24 pb-16 overflow-hidden">
+      <SEO
+        title="Our Solar Projects & Case Studies | GOL LOW Solar Rentals"
+        description="Browse active solar installations and leasing projects deployed by GOL LOW. Real-time solar energy production, carbon offsets, and client savings reports across Dubai, UAE, and India."
+        keywords="Solar Rental Company Dubai, Solar Energy Solutions Dubai, Rooftop Solar Dubai, Warehouse Solar Dubai, UAE Solar Projects, Commercial Solar UAE, Industrial Solar India, Solar Panel Rental Company Dubai"
+      />
       {/* Header Banner */}
       <section className="relative py-20 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -187,7 +193,7 @@ export default function Projects() {
       <section className="py-20 bg-[#04111f]/40 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-            <h3 className="font-heading font-extrabold text-2xl text-white">Project Directory</h3>
+            <h2 className="font-heading font-extrabold text-2xl text-white">Project Directory</h2>
             
             {/* Filter Tabs */}
             <div className="flex flex-wrap gap-2">

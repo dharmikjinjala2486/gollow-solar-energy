@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
@@ -6,8 +6,10 @@ import {
   HelpCircle, ChevronDown, CheckCircle2, ChevronRight, User, Star, MapPin, Phone, Mail
 } from 'lucide-react';
 
-import SolarCanvas from '../components/canvas/SolarCanvas';
-import EarthCanvas from '../components/canvas/EarthCanvas';
+import SEO from '../components/SEO';
+
+const SolarCanvas = lazy(() => import('../components/canvas/SolarCanvas'));
+const EarthCanvas = lazy(() => import('../components/canvas/EarthCanvas'));
 
 // Trusted Companies marquee items
 const clientMarquee = [
@@ -88,8 +90,40 @@ export default function Home() {
     ? projectsData
     : projectsData.filter(p => p.category === activeFilter);
 
+  const homeSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      'name': 'GOL LOW Solar Energy Systems Rental',
+      'url': 'https://www.gollowsolarenergy.com',
+      'potentialAction': {
+        '@type': 'SearchAction',
+        'target': 'https://www.gollowsolarenergy.com/blog?search={search_term_string}',
+        'query-input': 'required name=search_term_string'
+      }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': faqData.map(item => ({
+        '@type': 'Question',
+        'name': item.q,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': item.a
+        }
+      }))
+    }
+  ];
+
   return (
     <div ref={containerRef} className="relative w-full">
+      <SEO
+        title="GOL LOW | Premium Solar Energy Systems Rental UAE & India"
+        description="GOL LOW Solar Energy Systems Rental offers zero-upfront commercial solar panels, industrial solar leasing, and construction site hybrid power grid rentals across Dubai, Abu Dhabi, UAE, and India."
+        keywords="Gol Low Solar Energy, Gol Low, Gol Low Solar, Solar Energy Dubai, Solar Rental Dubai, Solar Panel Rental Dubai, Solar Leasing Dubai, Solar System Rental UAE, Commercial Solar UAE, Industrial Solar UAE, Solar Company Dubai, Solar Power Dubai, Solar Energy Company UAE, Solar Installation Dubai, Solar Rental Company, Solar Panels, Solar Energy, Solar Solutions, Renewable Energy, Clean Energy, Green Energy, Solar ROI, Solar Savings, Warehouse Solar, Villa Solar, Factory Solar, Business Solar, Solar Investment, Solar Power UAE, India Solar Company, Solar Rental India, Solar Energy India, Commercial Solar India, Industrial Solar India"
+        schemaList={homeSchemas}
+      />
       {/* 1. HERO SECTION */}
       <motion.section
         style={{ y: heroY, opacity: heroOpacity }}
@@ -148,10 +182,17 @@ export default function Home() {
           </div>
 
           {/* Right Column - 3D Render Canvas */}
-          <div className="lg:col-span-6 w-full flex items-center justify-center relative">
+          <div className="lg:col-span-6 w-full flex items-center justify-center relative min-h-[400px]">
             {/* Ambient solar particle background */}
             <div className="absolute inset-0 bg-[#4caf50]/5 rounded-full blur-[80px] pointer-events-none" />
-            <SolarCanvas />
+            <Suspense fallback={
+              <div className="w-full h-[400px] flex flex-col items-center justify-center border border-white/5 rounded-2xl bg-white/5 backdrop-blur-md">
+                <div className="w-8 h-8 border-2 border-brand-yellow border-t-transparent rounded-full animate-spin mb-2" />
+                <span className="text-[10px] text-white/40 tracking-wider font-heading uppercase">Loading 3D Solar Model...</span>
+              </div>
+            }>
+              <SolarCanvas />
+            </Suspense>
           </div>
         </div>
 
@@ -473,8 +514,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* Left Column: Visual Globe */}
-          <div className="lg:col-span-6 w-full flex items-center justify-center">
-            <EarthCanvas />
+          <div className="lg:col-span-6 w-full flex items-center justify-center min-h-[400px]">
+            <Suspense fallback={
+              <div className="w-full h-[400px] flex flex-col items-center justify-center border border-white/5 rounded-2xl bg-white/5 backdrop-blur-md">
+                <div className="w-8 h-8 border-2 border-brand-green border-t-transparent rounded-full animate-spin mb-2" />
+                <span className="text-[10px] text-white/40 tracking-wider font-heading uppercase">Loading 3D Globe...</span>
+              </div>
+            }>
+              <EarthCanvas />
+            </Suspense>
           </div>
 
           {/* Right Column: Text & Call to Action */}
@@ -654,23 +702,23 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-white/40 uppercase">Full Name</label>
-                <input type="text" placeholder="John Doe" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
+                <label htmlFor="fullName" className="text-[10px] font-bold text-white/40 uppercase">Full Name</label>
+                <input id="fullName" type="text" placeholder="John Doe" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-white/40 uppercase">Company Name</label>
-                <input type="text" placeholder="Enterprise LLC" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
+                <label htmlFor="companyName" className="text-[10px] font-bold text-white/40 uppercase">Company Name</label>
+                <input id="companyName" type="text" placeholder="Enterprise LLC" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-white/40 uppercase">Work Email</label>
-                <input type="email" placeholder="john@enterprise.ae" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
+                <label htmlFor="workEmail" className="text-[10px] font-bold text-white/40 uppercase">Work Email</label>
+                <input id="workEmail" type="email" placeholder="john@enterprise.ae" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-white/40 uppercase">Phone Number</label>
-                <input type="tel" placeholder="+971 50 123 4567" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
+                <label htmlFor="phoneNum" className="text-[10px] font-bold text-white/40 uppercase">Phone Number</label>
+                <input id="phoneNum" type="tel" placeholder="+971 50 123 4567" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-yellow/50" />
               </div>
             </div>
 

@@ -1,0 +1,36 @@
+{
+  "name": "GOL LOW Solar Energy Systems Rental",
+  "short_name": "GOL LOW",
+  "description": "Premium Solar Energy Systems Rental in UAE and India with zero upfront investment.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#061B2D",
+  "theme_color": "#061B2D",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/android-chrome-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/android-chrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

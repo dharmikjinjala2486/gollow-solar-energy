@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Grid, useGLTF, Center } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import solarLampUrl from '../../assets/solar_lamp__lampara_solar__solar_street_light.glb';
+import AutoCameraFitter from './AutoCameraFitter';
 
 function hasWebGL() {
   try {
@@ -17,9 +18,15 @@ function hasWebGL() {
 }
 
 // 3D Solar Lamp Model Component
-function BatteryModel({ hovered }) {
+function BatteryModel({ hovered, modelRef }) {
   const { scene } = useGLTF(solarLampUrl);
   const groupRef = useRef();
+
+  useEffect(() => {
+    if (modelRef) {
+      modelRef.current = scene;
+    }
+  }, [scene, modelRef]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -99,6 +106,8 @@ function BatterySVG({ hovered }) {
 export default function BatteryCanvas() {
   const [webGLSupported, setWebGLSupported] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const modelRef = useRef();
+  const controlsRef = useRef();
 
   useEffect(() => {
     setWebGLSupported(hasWebGL());
@@ -106,7 +115,7 @@ export default function BatteryCanvas() {
 
   return (
     <div 
-      className="w-full h-[350px] md:h-[450px] relative select-none"
+      className="w-full h-[350px] md:h-[450px] relative select-none overflow-visible"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -115,7 +124,16 @@ export default function BatteryCanvas() {
           <Canvas
             camera={{ position: [0, 0.4, 2.5], fov: 50 }}
             gl={{ antialias: true, alpha: true }}
-            className="w-full h-full cursor-grab active:cursor-grabbing"
+            style={{
+              position: 'absolute',
+              top: '-15%',
+              left: '-15%',
+              width: '130%',
+              height: '130%',
+              pointerEvents: 'auto',
+            }}
+            className="cursor-grab active:cursor-grabbing"
+            shadows
           >
             <ambientLight intensity={1.8} />
             <directionalLight position={[5, 8, 5]} intensity={3.5} color="#ffffff" />
@@ -124,11 +142,17 @@ export default function BatteryCanvas() {
             <pointLight position={[-10, -5, -5]} intensity={1.0} color="#4caf50" />
             
             <Suspense fallback={null}>
-              <BatteryModel hovered={hovered} />
+              <BatteryModel hovered={hovered} modelRef={modelRef} />
             </Suspense>
+
+            <AutoCameraFitter modelRef={modelRef} padding={1.2} controlsRef={controlsRef} />
             
             <OrbitControls 
+              ref={controlsRef}
               enableZoom={false} 
+              enablePan={false}
+              enableDamping
+              dampingFactor={0.05}
               autoRotate={!hovered} 
               autoRotateSpeed={0.8}
               maxPolarAngle={Math.PI / 2 + 0.1}

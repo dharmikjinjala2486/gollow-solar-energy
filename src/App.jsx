@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 
@@ -7,15 +7,16 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ChatAssistant from './components/ai/ChatAssistant';
 
-// Page imports
-import Home from './pages/Home';
-import About from './pages/About';
-import Solutions from './pages/Solutions';
-import Projects from './pages/Projects';
-import RentalPlans from './pages/RentalPlans';
-import Blog from './pages/Blog';
-import BlogDetail from './pages/BlogDetail';
-import Contact from './pages/Contact';
+// Lazy loaded page components
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Projects = lazy(() => import('./pages/Projects'));
+const RentalPlans = lazy(() => import('./pages/RentalPlans'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogDetail = lazy(() => import('./pages/BlogDetail'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   // Initialize Lenis Smooth Scroll
@@ -45,22 +46,30 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-brand-navy">
         {/* Navigation Glass Bar */}
         <Navbar />
 
         {/* Core Main Viewport */}
         <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/plans" element={<RentalPlans />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <Suspense fallback={
+            <div className="min-h-[80vh] flex flex-col items-center justify-center gap-4">
+              <div className="w-10 h-10 border-4 border-brand-yellow border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-xs font-heading font-semibold text-brand-yellow uppercase tracking-widest animate-pulse">GOL LOW Solar Energy</span>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/plans" element={<RentalPlans />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogDetail />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* Global Floating AI Assistant Widget */}

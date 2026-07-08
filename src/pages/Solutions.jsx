@@ -1,7 +1,10 @@
+import { useState, useRef, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Shield, Sparkles, Zap, Database, Check } from 'lucide-react';
-import BatteryCanvas from '../components/canvas/BatteryCanvas';
-import SolarCanvas from '../components/canvas/SolarCanvas';
+import SEO from '../components/SEO';
+
+const BatteryCanvas = lazy(() => import('../components/canvas/BatteryCanvas'));
+const SolarCanvas = lazy(() => import('../components/canvas/SolarCanvas'));
 
 const solutions = [
   {
@@ -35,8 +38,37 @@ const technicalSpecs = [
 ];
 
 export default function Solutions() {
+  const solutionsSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'Commercial Solar System Rental',
+      'provider': {
+        '@id': 'https://www.gollowsolarenergy.com/#organization'
+      },
+      'areaServed': ['AE', 'IN'],
+      'description': 'Zero upfront capital expense commercial solar leases and shade installations for companies in Dubai & India.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'Industrial Solar System Rental',
+      'provider': {
+        '@id': 'https://www.gollowsolarenergy.com/#organization'
+      },
+      'areaServed': ['AE', 'IN'],
+      'description': 'High-yield rooftop and ground-mounted solar leasing installations for factories, cold storage, and warehouse operations.'
+    }
+  ];
+
   return (
     <div className="pt-24 pb-16 overflow-hidden">
+      <SEO
+        title="Solar Energy Solutions | Commercial, Industrial & Hybrid Grid Rentals"
+        description="Explore custom solar solutions by GOL LOW. From industrial solar container grids to commercial rooftop leasing and smart solar-diesel hybrid rentals for construction sites in UAE & India."
+        keywords="Solar Rental Dubai, Solar Solutions, Commercial Solar UAE, Industrial Solar UAE, Warehouse Solar Dubai, Villa Solar, Factory Solar, Battery Storage Rental, Solar Power India, Commercial Solar India"
+        schemaList={solutionsSchemas}
+      />
       {/* Header Banner */}
       <section className="relative py-20 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -63,17 +95,35 @@ export default function Solutions() {
             }`}
           >
             {/* Visual Block */}
-            <div className="w-full lg:w-1/2 bg-[#04111f] border border-white/5 rounded-2xl p-6 min-h-[300px] flex items-center justify-center relative overflow-hidden">
+            <div className={`w-full lg:w-1/2 min-h-[300px] flex items-center justify-center relative ${
+              sol.title.includes('Construction') || sol.title.includes('Battery')
+                ? 'overflow-visible' 
+                : 'bg-[#04111f] border border-white/5 rounded-2xl p-6 overflow-hidden'
+            }`}>
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-yellow/5 rounded-full blur-2xl pointer-events-none" />
               
               {/* If battery solution, render Battery Canvas, else a visual placeholder */}
               {sol.title.includes('Battery') ? (
                 <div className="w-full">
-                  <BatteryCanvas />
+                  <Suspense fallback={
+                    <div className="w-full h-[250px] flex flex-col items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-brand-yellow border-t-transparent rounded-full animate-spin mb-2" />
+                      <span className="text-[9px] text-white/40 tracking-wider">Loading Battery Model...</span>
+                    </div>
+                  }>
+                    <BatteryCanvas />
+                  </Suspense>
                 </div>
               ) : sol.title.includes('Construction') ? (
                 <div className="w-full">
-                  <SolarCanvas />
+                  <Suspense fallback={
+                    <div className="w-full h-[250px] flex flex-col items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-brand-yellow border-t-transparent rounded-full animate-spin mb-2" />
+                      <span className="text-[9px] text-white/40 tracking-wider">Loading Solar Container...</span>
+                    </div>
+                  }>
+                    <SolarCanvas />
+                  </Suspense>
                 </div>
               ) : (
                 <div className="flex flex-col items-center gap-4 text-center p-8">
@@ -143,8 +193,15 @@ export default function Solutions() {
           </div>
 
           {/* R3F Component */}
-          <div className="lg:col-span-6 w-full">
-            <BatteryCanvas />
+          <div className="lg:col-span-6 w-full min-h-[300px] flex items-center justify-center">
+            <Suspense fallback={
+              <div className="w-full h-[300px] flex flex-col items-center justify-center border border-white/5 rounded-2xl bg-white/5 backdrop-blur-md">
+                <div className="w-8 h-8 border-2 border-brand-green border-t-transparent rounded-full animate-spin mb-2" />
+                <span className="text-[10px] text-white/40 tracking-wider font-heading uppercase">Loading Battery Storage Container...</span>
+              </div>
+            }>
+              <BatteryCanvas />
+            </Suspense>
           </div>
         </div>
       </section>

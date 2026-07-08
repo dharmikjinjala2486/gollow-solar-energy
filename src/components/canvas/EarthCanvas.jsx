@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
+import AutoCameraFitter from './AutoCameraFitter';
 
 function hasWebGL() {
   try {
@@ -16,7 +17,7 @@ function hasWebGL() {
 }
 
 // 3D Holographic Globe Component
-function GlobeModel({ hovered }) {
+function GlobeModel({ hovered, modelRef }) {
   const globeRef = useRef();
   const cloudRef = useRef();
   const markerRef = useRef();
@@ -38,7 +39,7 @@ function GlobeModel({ hovered }) {
   });
 
   return (
-    <group>
+    <group ref={modelRef}>
       {/* Central Glowing Core */}
       <mesh>
         <sphereGeometry args={[0.8, 16, 16]} />
@@ -150,6 +151,8 @@ function GlobeSVG({ hovered }) {
 export default function EarthCanvas() {
   const [webGLSupported, setWebGLSupported] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const modelRef = useRef();
+  const controlsRef = useRef();
 
   useEffect(() => {
     setWebGLSupported(hasWebGL());
@@ -157,7 +160,7 @@ export default function EarthCanvas() {
 
   return (
     <div 
-      className="w-full h-[350px] md:h-[450px] relative select-none"
+      className="w-full h-[350px] md:h-[450px] relative select-none overflow-visible"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -166,20 +169,34 @@ export default function EarthCanvas() {
           <Canvas
             camera={{ position: [0, 0, 3.2], fov: 50 }}
             gl={{ antialias: true, alpha: true }}
-            className="w-full h-full cursor-grab active:cursor-grabbing"
+            style={{
+              position: 'absolute',
+              top: '-15%',
+              left: '-15%',
+              width: '130%',
+              height: '130%',
+              pointerEvents: 'auto',
+            }}
+            className="cursor-grab active:cursor-grabbing"
+            shadows
           >
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
             <pointLight position={[-10, -5, -5]} intensity={0.5} color="#4caf50" />
             <directionalLight position={[1, 2, 2]} intensity={1.0} color="#ffffff" />
             
-            <GlobeModel hovered={hovered} />
+            <GlobeModel hovered={hovered} modelRef={modelRef} />
+
+            <AutoCameraFitter modelRef={modelRef} padding={1.25} controlsRef={controlsRef} />
             
             <OrbitControls 
+              ref={controlsRef}
               enableZoom={false} 
+              enablePan={false}
               autoRotate={!hovered} 
               autoRotateSpeed={0.5}
               enableDamping
+              dampingFactor={0.05}
             />
           </Canvas>
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck, Target, Eye, Users, Calendar, Briefcase, Mail } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const values = [
   { title: 'Engineering Precision', desc: 'Every installation is modeled using satellite drone telemetry to ensure maximum structural integrity and peak kWp yield.', icon: ShieldCheck },
@@ -27,6 +28,11 @@ const jobs = [
 export default function About() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
+      <SEO
+        title="About GOL LOW | Pioneering Solar Panel Leasing in UAE & India"
+        description="Learn about GOL LOW Solar Energy Systems Rental. We are the leading solar company in Dubai, supplying commercial, industrial, and residential solar solutions with zero upfront CAPEX across the UAE and India."
+        keywords="About Gol Low, Solar Company Dubai, Solar Energy Company UAE, India Solar Company, Solar Rental Company, Renewable Energy Dubai, Clean Energy UAE, Solar Solutions, Solar Investment, Commercial Solar Dubai, Industrial Solar India"
+      />
       {/* Header Banner */}
       <section className="relative py-20 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -49,7 +55,7 @@ export default function About() {
           <div className="p-3 bg-brand-yellow/10 rounded-xl text-brand-yellow">
             <Target className="w-6 h-6" />
           </div>
-          <h3 className="font-heading font-bold text-xl text-white">Our Mission</h3>
+          <h2 className="font-heading font-bold text-xl text-white">Our Mission</h2>
           <p className="text-sm text-white/60 leading-relaxed">
             To eliminate the capital expenditure barrier for solar transitions across the Middle East. By providing fully funded, engineered, and maintained solar rentals, we enable organizations to immediately offset utility expenses and lower their environmental footprint without operational risk.
           </p>
@@ -59,7 +65,7 @@ export default function About() {
           <div className="p-3 bg-brand-green/10 rounded-xl text-brand-green">
             <Eye className="w-6 h-6" />
           </div>
-          <h3 className="font-heading font-bold text-xl text-white">Our Vision</h3>
+          <h2 className="font-heading font-bold text-xl text-white">Our Vision</h2>
           <p className="text-sm text-white/60 leading-relaxed">
             To become the premier clean energy rental platform in the UAE, supporting the national Net Zero 2050 targets. We aim to deploy over 100 Megawatts of decentralized clean capacity by 2030, replacing diesel generators with modular smart grids.
           </p>

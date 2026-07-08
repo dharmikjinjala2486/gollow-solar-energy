@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User, Clock, Share2, Copy } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function BlogDetail() {
   const { slug } = useParams();
@@ -104,10 +105,13 @@ export default function BlogDetail() {
 
   return (
     <div className="pt-24 pb-16">
-      {/* Schema Injection */}
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <SEO
+        title={`${blog.title} | GOL LOW Solar Blog`}
+        description={blog.subtitle || blog.title}
+        keywords={typeof blog.tags === 'string' ? blog.tags : (Array.isArray(blog.tags) ? blog.tags.join(', ') : 'solar energy, solar rental uae, gol low')}
+        ogImage={blog.imageUrl}
+        schemaList={[jsonLd]}
+      />
 
       {/* Breadcrumb & Navigation */}
       <div className="max-w-4xl mx-auto px-6 mb-8 text-left">

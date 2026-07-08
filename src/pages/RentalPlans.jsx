@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, HelpCircle, ArrowRight, Table, Check } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const plans = [
   {
@@ -39,6 +40,11 @@ const plans = [
 export default function RentalPlans() {
   return (
     <div className="pt-24 pb-16 overflow-hidden">
+      <SEO
+        title="Solar Rental Plans & Zero-CAPEX Leasing Models | GOL LOW"
+        description="Flexible rental and leasing contracts for solar panel systems. Zero upfront CAPEX options: Flat-rate rental, energy savings lease, and lease-to-own models for UAE and India businesses."
+        keywords="Solar Panel Rental Dubai, Solar Leasing Dubai, Solar ROI, Solar Savings, Solar Investment, Best Solar Rental UAE, Commercial Solar Leasing UAE, Industrial Solar Rental UAE"
+      />
       {/* Header Banner */}
       <section className="relative py-20 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -57,6 +63,7 @@ export default function RentalPlans() {
 
       {/* Plans Grid */}
       <section className="py-20 max-w-7xl mx-auto px-6">
+        <h2 className="sr-only">Available Solar Rental & Leasing Plans</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan, idx) => (
             <div 

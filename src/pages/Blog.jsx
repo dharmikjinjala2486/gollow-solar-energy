@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, User, BookOpen, ChevronRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -32,6 +33,11 @@ export default function Blog() {
 
   return (
     <div className="pt-24 pb-16 overflow-hidden">
+      <SEO
+        title="Solar Education, Guidebooks & Insights | GOL LOW Blog"
+        description="Read the latest articles on solar regulations, DEWA Shams regulations, solar savings calculator advice, industrial battery storage, and solar energy updates in the UAE and India."
+        keywords="Solar Energy Dubai, Solar ROI, Clean Energy, Renewable Energy UAE, Solar Rental India, Solar Energy Company in India, Best Solar Company Dubai, Solar Panel Rental Company Dubai"
+      />
       {/* Header Banner */}
       <section className="relative py-20 bg-grid-pattern bg-[#04111f] border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/10 to-brand-navy pointer-events-none" />
@@ -50,6 +56,7 @@ export default function Blog() {
 
       {/* Directory Controls */}
       <section className="py-12 bg-[#04111f]/30 border-b border-white/5">
+        <h2 className="sr-only">Article Categories and Search Directory</h2>
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-6 justify-between items-center">
           {/* Categories */}
           <div className="flex flex-wrap gap-2 justify-center">
@@ -76,6 +83,7 @@ export default function Blog() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search articles, guidebooks..."
+              aria-label="Search articles and guidebooks"
               className="w-full bg-white/5 border border-white/10 focus:border-brand-yellow/50 focus:outline-none rounded-xl pl-10 pr-4 py-2.5 text-xs text-white"
             />
           </div>
