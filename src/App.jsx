@@ -1,6 +1,7 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
+import { Analytics } from '@vercel/analytics/react';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -80,6 +81,9 @@ export default function App() {
 
         {/* Brand footer grid */}
         <Footer />
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </div>
     </Router>
   );
